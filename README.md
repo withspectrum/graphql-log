@@ -2,6 +2,19 @@
 
 Add logging to your GraphQL resolvers so you know what's going on in your app.
 
+Everytime a resolver is executed it logs the full path to the resolver. The output in your terminal (when using the popular `debug` module for logging) will be something like this:
+
+```sh
+server:resolvers Message.channel +0ms
+server:resolvers User.avatar +0ms
+server:resolvers User.username +0ms
+server:resolvers User.avatar +4ms
+server:resolvers User.coverPhoto +0ms
+server:resolvers User.username +0ms
+```
+
+> Note: The "server:resolvers" and "+xms" parts are added by `debug`, this module only logs the path on execution.
+
 ## Usage
 
 This is the simple usage:
@@ -38,7 +51,7 @@ const logExecutions = createGraphQLLogger({
 Let's say you want to use the popular `debug` module for logging. Doing so would be as easy as passing it into the `logger` option:
 
 ```javascript
-const debug = require('debug')('schema');
+const debug = require('debug')('server:resolvers');
 
 const logExecutions = createGraphQLLogger({
   logger: debug,

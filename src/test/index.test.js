@@ -11,7 +11,7 @@ describe('createGraphQLLogger', () => {
 describe('logger', () => {
   describe('replacer', () => {
     it('should wrap each function in an object', () => {
-      const logger = createGraphQLLogger();
+      const logExecutions = createGraphQLLogger();
       const key = 'test';
       const key2 = 'test2';
       const value = () => {};
@@ -30,7 +30,7 @@ describe('logger', () => {
     });
 
     it('should wrap nested functions in an object', () => {
-      const logger = createGraphQLLogger();
+      const logExecutions = createGraphQLLogger();
       const nester = 'nested';
       const key = 'test';
       const key2 = 'test2';
@@ -52,7 +52,7 @@ describe('logger', () => {
     });
 
     it('should leave all non-function values alone', () => {
-      const logger = createGraphQLLogger();
+      const logExecutions = createGraphQLLogger();
       const key = 'test';
       const key2 = 'test2';
       const value = () => {};
@@ -133,7 +133,7 @@ describe('logger', () => {
     it('should use the console as the default logger', () => {
       const log = console.log.bind(console);
       console.log = jest.fn();
-      const logger = createGraphQLLogger();
+      const logExecutions = createGraphQLLogger();
       const key = 'test';
       const value = () => {};
       const obj = {
