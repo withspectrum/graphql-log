@@ -24,4 +24,4 @@ const createGraphQLLogger = (options?: Options = {}) => (resolvers: Object) => {
   });
 };
 
-export default createGraphQLLogger;
+module.exports = createGraphQLLogger;
