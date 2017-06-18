@@ -17,7 +17,7 @@ server:resolvers User.username +0ms
 
 ## Usage
 
-This is the simple usage:
+This is the simplest example:
 
 ```javascript
 // Require the module
@@ -56,6 +56,21 @@ const debug = require('debug')('server:resolvers');
 const logExecutions = createGraphQLLogger({
   logger: debug,
 });
+```
+
+### Usage only in development
+
+Logging every execution of every resolver will have a performance impact on your app, so we recommend only enabling this module in development. A common way to do so (depending on your setup) would be something like this:
+
+```javascript
+const createGraphQLLogger = require('graphql-log');
+
+const resolvers = {/*...*/};
+
+if (process.env.NODE_ENV === 'development') {
+  const logExecutions = createGraphQLLogger();
+  logExecutions(resolvers);
+}
 ```
 
 ## Roadmap
