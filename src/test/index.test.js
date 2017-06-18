@@ -22,7 +22,7 @@ describe('logger', () => {
 
       expect(obj[key]).toEqual(value);
       expect(obj[key2]).toEqual(value);
-      logger(obj);
+      logExecutions(obj);
       expect(obj[key].name).toEqual('wrapped');
       expect(obj[key]).not.toEqual(value);
       expect(obj[key2].name).toEqual('wrapped');
@@ -44,7 +44,7 @@ describe('logger', () => {
 
       expect(obj[nester][key]).toEqual(value);
       expect(obj[nester][key2]).toEqual(value);
-      logger(obj);
+      logExecutions(obj);
       expect(obj[nester][key].name).toEqual('wrapped');
       expect(obj[nester][key]).not.toEqual(value);
       expect(obj[nester][key2].name).toEqual('wrapped');
@@ -64,7 +64,7 @@ describe('logger', () => {
 
       expect(obj[key]).toEqual(value);
       expect(obj[key2]).toEqual(value2);
-      logger(obj);
+      logExecutions(obj);
       expect(obj[key].name).toEqual('wrapped');
       expect(obj[key]).not.toEqual(value);
       expect(obj[key2]).not.toBeInstanceOf(Function);
@@ -75,7 +75,7 @@ describe('logger', () => {
   describe('wrapper', () => {
     it('should call logger with the path of the object when a wrapped function is called', () => {
       const spy = jest.fn();
-      const logger = createGraphQLLogger({
+      const logExecutions = createGraphQLLogger({
         logger: spy,
       });
       const key = 'test';
@@ -84,7 +84,7 @@ describe('logger', () => {
         [key]: value,
       };
 
-      logger(obj);
+      logExecutions(obj);
       expect(obj[key]).toBeInstanceOf(Function);
       obj[key]();
       expect(spy).toHaveBeenCalledWith(key);
@@ -92,7 +92,7 @@ describe('logger', () => {
 
     it('should call logger with the nested path of the object', () => {
       const spy = jest.fn();
-      const logger = createGraphQLLogger({
+      const logExecutions = createGraphQLLogger({
         logger: spy,
       });
       const nester = 'nested';
@@ -104,14 +104,14 @@ describe('logger', () => {
         },
       };
 
-      logger(obj);
+      logExecutions(obj);
       expect(obj[nester][key]).toBeInstanceOf(Function);
       obj[nester][key]();
       expect(spy).toHaveBeenCalledWith(`${nester}.${key}`);
     });
 
     it('should call the wrapped function with all arguments passed through', () => {
-      const logger = createGraphQLLogger({
+      const logExecutions = createGraphQLLogger({
         // Pass mock logger to not output everything in the console
         logger: jest.fn(),
       });
@@ -122,7 +122,7 @@ describe('logger', () => {
       };
 
       const args = ['some', 'arguments'];
-      logger(obj);
+      logExecutions(obj);
       expect(obj[key]).toBeInstanceOf(Function);
       obj[key](...args);
       expect(value).toHaveBeenCalledWith(...args);
@@ -140,7 +140,7 @@ describe('logger', () => {
         [key]: value,
       };
 
-      logger(obj);
+      logExecutions(obj);
       obj[key]();
       expect(console.log).toHaveBeenCalled();
       console.log = log;
@@ -148,7 +148,7 @@ describe('logger', () => {
 
     it('should allow custom loggers', () => {
       const spy = jest.fn();
-      const logger = createGraphQLLogger({
+      const logExecutions = createGraphQLLogger({
         logger: spy,
       });
       const key = 'test';
@@ -157,7 +157,7 @@ describe('logger', () => {
         [key]: value,
       };
 
-      logger(obj);
+      logExecutions(obj);
       obj[key]();
       expect(spy).toHaveBeenCalled();
     });
@@ -165,7 +165,7 @@ describe('logger', () => {
     it('should prefix all logs with the prefix', () => {
       const spy = jest.fn();
       const prefix = 'test';
-      const logger = createGraphQLLogger({
+      const logExecutions = createGraphQLLogger({
         logger: spy,
         prefix,
       });
@@ -175,7 +175,7 @@ describe('logger', () => {
         [key]: value,
       };
 
-      logger(obj);
+      logExecutions(obj);
       obj[key]();
       expect(spy).toHaveBeenCalledWith(prefix + key);
     });
