@@ -1,6 +1,6 @@
 {
   "name": "graphql-log",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Add logging to your GraphQL resolvers.",
   "repository": {
     "type": "git",
