@@ -12,6 +12,7 @@
     "precommit": "lint-staged",
     "prebuild": "rimraf dist",
     "build": "babel src --out-dir dist --ignore '*.test.js'",
+    "prepublish": "npm run build",
     "test": "jest src",
     "prettier": "prettier --write --single-quote --trailing-comma es5 'src/**/*.js'",
     "flow": "flow src"
