@@ -36,7 +36,9 @@
   },
   "dependencies": {
     "deep-for-each": "^1.0.6",
-    "graphql": "^14.0.2",
     "is-function": "^1.0.1"
+  },
+  "peerDependencies": {
+    "graphql": "^14.0.2"
   }
 }
