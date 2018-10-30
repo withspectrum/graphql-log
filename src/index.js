@@ -20,9 +20,8 @@ function wrap(
   injectedFn: (path: string) => void,
   prefix: string = ''
 ): void {
-  // TODO handle field with no resolve fn ?
+  // TODO handle fields with no resolve fn ?
   const resolveFn = field.resolve;
-
   if (resolveFn)
     field.resolve = (...args) => {
       injectedFn(prefix + responsePathAsArray(args[3].path).join('.'));
@@ -72,7 +71,6 @@ function forEachField(
       const fields = type.getFields();
       Object.keys(fields).forEach(fieldName => {
         const field = fields[fieldName];
-        field;
         fn(field, typeName, fieldName);
       });
     }

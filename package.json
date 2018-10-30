@@ -39,6 +39,6 @@
     "is-function": "^1.0.1"
   },
   "peerDependencies": {
-    "graphql": "^14.0.2"
+    "graphql": "^0.11"
   }
 }
