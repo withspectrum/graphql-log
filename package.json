@@ -27,7 +27,7 @@
     "babel-cli": "6.x.x",
     "babel-preset-env": "^1.7.0",
     "babel-preset-flow": "^6.23.0",
-    "flow-bin": "^0.45.0",
+    "flow-bin": "^0.86.0",
     "husky": "^0.13.3",
     "jest": "19.x.x",
     "lint-staged": "^3.4.1",
