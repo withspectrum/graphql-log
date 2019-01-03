@@ -32,7 +32,7 @@
     "jest": "19.x.x",
     "lint-staged": "^3.4.1",
     "prettier": "^1.15.3",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.3"
   },
   "dependencies": {
     "deep-for-each": "^1.0.6",
